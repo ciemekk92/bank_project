@@ -1,47 +1,40 @@
 package com.company.banking.models;
 
-public class Account {
-    private String name, type, ownerId;
-    private double currentBalance, accountNumber;
-    private Operation[] operations;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-    public String getName() {
-        return name;
-    }
+public class Account { // TODO: Subclasses
+    private String accountNumber;
+    private double balance;
+    private final List<Transaction> transactions = new ArrayList<>();
+    private Client owner;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public double getCurrentBalance() {
-        return currentBalance;
-    }
-
-    public void setCurrentBalance(double currentBalance) {
-        this.currentBalance = currentBalance;
-    }
-
-    public double getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(double accountNumber) {
+    public double getBalance() {
+        return balance;
+    }
+
+    public List<Transaction> getTransactions() {
+        return Collections.unmodifiableList(transactions);
+    }
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
     }
 }
