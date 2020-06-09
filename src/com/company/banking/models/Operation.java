@@ -1,4 +1,4 @@
-package com.company;
+package com.company.banking.models;
 
 public class Operation {
     private String operationType, operationId, operationDate, payeeId, payerId;

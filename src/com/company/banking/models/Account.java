@@ -1,4 +1,4 @@
-package com.company;
+package com.company.banking.models;
 
 public class Account {
     private String name, type, ownerId;
