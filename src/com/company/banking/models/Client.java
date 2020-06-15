@@ -1,5 +1,6 @@
 package com.company.banking.models;
 
+import com.company.banking.models.Account.Account;
 import com.company.banking.util.Address;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Client {
         this.name = name;
         this.surname = surname;
         this.address = address;
+        this.id = UUID.randomUUID();
     }
 
     public UUID getId() {
@@ -53,6 +55,11 @@ public class Client {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Client ID: " + id + "\nName: " + name + "\nSurname: " + surname + "\nAddress: " + address.toString();
     }
 }
 

@@ -1,5 +1,7 @@
 package com.company.banking.models;
 
+import com.company.banking.models.Account.Account;
+
 import java.util.UUID;
 
 public class Transaction {
@@ -31,5 +33,10 @@ public class Transaction {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction ID: " + id + "\nAmount: " + amount;
     }
 }

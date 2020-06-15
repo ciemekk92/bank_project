@@ -1,12 +1,15 @@
-package com.company.banking.models;
+package com.company.banking.models.Account;
+
+import com.company.banking.models.Client;
+import com.company.banking.models.Transaction;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Account { // TODO: Subclasses
-    private String accountNumber;
-    private double balance;
+    public String accountNumber;
+    public double balance;
     private final List<Transaction> transactions = new ArrayList<>();
     private Client owner;
 
@@ -36,5 +39,11 @@ public class Account { // TODO: Subclasses
 
     public void setOwner(Client owner) {
         this.owner = owner;
+    }
+
+    public void printAllTransactions () {
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
+        }
     }
 }
