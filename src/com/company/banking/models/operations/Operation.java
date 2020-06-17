@@ -21,4 +21,9 @@ public abstract class Operation {
     public void setId(UUID id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Operation ID: " + id + "\nAmount: " + amount;
+    }
 }

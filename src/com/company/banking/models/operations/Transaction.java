@@ -21,6 +21,6 @@ public class Transaction extends Operation {
 
     @Override
     public String toString() {
-        return "Transaction ID: " + id + "\nAmount: " + amount;
+        return "Transaction ID: " + id + "\nAmount: " + amount + "\nPayer Account: " + payerAccount + "\nPayee Account: " + payeeAccount;
     }
 }

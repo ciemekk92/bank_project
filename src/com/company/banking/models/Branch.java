@@ -22,10 +22,12 @@ public class Branch {
     }
 
     public void addNewClient (Client client) {
+        client.setBranch(this);
         clients.add(client);
     }
 
     public void removeClient (Client client) {
+        client.setBranch(null);
         clients.remove(client);
     }
 

@@ -41,9 +41,9 @@ public class Account { // TODO: Subclasses
         this.owner = owner;
     }
 
-    public void printAllTransactions () {
-        for (Operation transaction : operations) {
-            System.out.println(transaction.toString());
+    public void printAllOperations() {
+        for (Operation operation : operations) {
+            System.out.println(operation.toString());
         }
     }
 }

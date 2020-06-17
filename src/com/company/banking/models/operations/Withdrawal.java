@@ -13,4 +13,9 @@ public class Withdrawal extends Operation {
     public Account getAccount() {
         return account;
     }
+
+    @Override
+    public String toString() {
+        return "Withdrawal ID: " + id + "\nAmount: " + amount + "\nAccount: " + account;
+    }
 }

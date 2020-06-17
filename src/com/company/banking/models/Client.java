@@ -13,12 +13,23 @@ public class Client {
     private String name, surname;
     private Address address;
     private final List<Account> accounts = new ArrayList<>();
+    private Branch branch;
 
     public Client(String name, String surname, Address address) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.id = UUID.randomUUID();
+    }
+
+    public void addNewAccount(Account account) {
+        account.setOwner(this);
+        accounts.add(account);
+    }
+
+    public void removeAccount(Account account) {
+        account.setOwner(null);
+        accounts.remove(account);
     }
 
     public UUID getId() {
@@ -41,6 +52,10 @@ public class Client {
         return Collections.unmodifiableList(accounts);
     }
 
+    public Branch getBranch() {
+        return branch;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -57,9 +72,13 @@ public class Client {
         this.address = address;
     }
 
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
     @Override
     public String toString() {
-        return "Client ID: " + id + "\nName: " + name + "\nSurname: " + surname + "\nAddress: " + address.toString();
+        return "Client ID: " + id + "\nName: " + name + "\nSurname: " + surname + "\nAddress: " + address;
     }
 }
 

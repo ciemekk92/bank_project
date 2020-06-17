@@ -13,4 +13,9 @@ public class Deposit extends Operation {
     public Account getAccount() {
         return account;
     }
+
+    @Override
+    public String toString() {
+        return "Deposit ID: " + id + "\nAmount: " + amount + "\nAccount: " + account;
+    }
 }
