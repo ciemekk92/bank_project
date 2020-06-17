@@ -1,6 +1,6 @@
 package com.company.banking.models;
 
-import com.company.banking.models.Account.Account;
+import com.company.banking.models.accounts.Account;
 import com.company.banking.util.Address;
 
 import java.util.ArrayList;

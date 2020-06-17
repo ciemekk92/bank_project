@@ -1,7 +1,7 @@
-package com.company.banking.models.Account;
+package com.company.banking.models.accounts;
 
 import com.company.banking.models.Client;
-import com.company.banking.models.Transaction;
+import com.company.banking.models.operations.Operation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.List;
 public class Account { // TODO: Subclasses
     public String accountNumber;
     public double balance;
-    private final List<Transaction> transactions = new ArrayList<>();
+    private final List<Operation> operations = new ArrayList<>();
     private Client owner;
 
     public String getAccountNumber() {
@@ -21,8 +21,8 @@ public class Account { // TODO: Subclasses
         return balance;
     }
 
-    public List<Transaction> getTransactions() {
-        return Collections.unmodifiableList(transactions);
+    public List<Operation> getOperations() {
+        return Collections.unmodifiableList(operations);
     }
 
     public Client getOwner() {
@@ -42,7 +42,7 @@ public class Account { // TODO: Subclasses
     }
 
     public void printAllTransactions () {
-        for (Transaction transaction : transactions) {
+        for (Operation transaction : operations) {
             System.out.println(transaction.toString());
         }
     }

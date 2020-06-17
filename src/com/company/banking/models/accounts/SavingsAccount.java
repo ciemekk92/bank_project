@@ -1,4 +1,4 @@
-package com.company.banking.models.Account;
+package com.company.banking.models.accounts;
 
 public class SavingsAccount extends Account {
     private double interest, transferFee, withdrawFee;
