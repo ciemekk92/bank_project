@@ -1,6 +1,8 @@
 package com.company.banking.models.accounts;
 
-public class SavingsAccount extends Account {
+import java.io.Serializable;
+
+public class SavingsAccount extends Account implements Serializable {
     private double interest, transferFee, withdrawFee;
 
     public SavingsAccount() {}

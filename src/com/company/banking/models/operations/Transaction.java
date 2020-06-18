@@ -2,7 +2,9 @@ package com.company.banking.models.operations;
 
 import com.company.banking.models.accounts.Account;
 
-public class Transaction extends Operation {
+import java.io.Serializable;
+
+public class Transaction extends Operation implements Serializable {
     private final Account payerAccount, payeeAccount;
 
     public Transaction(double amount, Account payerAccount, Account payeeAccount) {

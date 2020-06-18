@@ -3,12 +3,13 @@ package com.company.banking.models;
 import com.company.banking.models.accounts.Account;
 import com.company.banking.util.Address;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-public class Client {
+public class Client implements Serializable {
     private UUID id;
     private String name, surname;
     private Address address;

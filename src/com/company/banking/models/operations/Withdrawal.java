@@ -2,7 +2,9 @@ package com.company.banking.models.operations;
 
 import com.company.banking.models.accounts.Account;
 
-public class Withdrawal extends Operation {
+import java.io.Serializable;
+
+public class Withdrawal extends Operation implements Serializable {
     private final Account account;
 
     public Withdrawal(double amount, Account account) {

@@ -1,9 +1,10 @@
 package com.company.banking.models;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Branch {
+public class Branch implements Serializable {
     private UUID id;
     private final List<Client> clients = new ArrayList<>();
 

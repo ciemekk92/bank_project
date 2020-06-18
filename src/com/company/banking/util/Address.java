@@ -1,6 +1,8 @@
 package com.company.banking.util;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private String country, city, postcode, street;
 
     public Address(String country, String city, String postcode, String street) {

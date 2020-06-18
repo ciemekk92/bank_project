@@ -1,5 +1,7 @@
 package com.company.banking.models.accounts;
 
-public class RegularAccount extends Account {
+import java.io.Serializable;
+
+public class RegularAccount extends Account implements Serializable {
     public RegularAccount() {}
 }

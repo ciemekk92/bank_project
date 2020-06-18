@@ -2,7 +2,9 @@ package com.company.banking.models.operations;
 
 import com.company.banking.models.accounts.Account;
 
-public class Deposit extends Operation {
+import java.io.Serializable;
+
+public class Deposit extends Operation implements Serializable {
     private final Account account;
 
     public Deposit(double amount, Account account) {
