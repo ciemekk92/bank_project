@@ -48,6 +48,93 @@ public class Main {
             }
         }
 
+        Menu.main();
+
+    }
+
+    private static class Menu {
+        public static void main() {
+            Scanner stdin = new Scanner(System.in).useLocale(Locale.ENGLISH);
+            loop:
+            while(true) {
+                displayMenu("Main menu", "Manage clients", "Exit");
+                int choice = UserInput.getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        manageClients(stdin);
+                        break;
+                    case 2:
+                        break loop;
+                }
+            }
+
+        }
+
+        private static void manageClients(Scanner stdin) {
+            displayMenu("Manage clients" ,
+                    "Search clients", "Add client", "Edit client", "Remove client", "Main menu");
+            loop:
+            while(true) {
+                int choice = UserInput.getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        break;
+                    case 5:
+                        break loop;
+                }
+            }
+        }
+
+        private static void displayMenu(String title, String... options) {
+            System.out.println(title);
+            int i = 1;
+            for(String option : options) {
+                System.out.println(i++ + " - " + option);
+            }
+            System.out.print("> ");
+        }
+    }
+
+    private static class UserInput {
+        private static int getInt(Scanner stdin) {
+            while(!stdin.hasNextInt()) {
+                System.out.println("Integer required.");
+                stdin.next();
+            }
+            int input = stdin.nextInt();
+            stdin.nextLine();
+            return input;
+        }
+
+        private static int getInt(Scanner stdin, int minValue, int maxValue) {
+            int input = 0;
+            do {
+
+                while(!stdin.hasNextInt()) {
+                    System.out.println("Integer required.");
+                    stdin.next();
+                }
+                input = stdin.nextInt();
+                stdin.nextLine();
+
+                if(input < minValue || input > maxValue) {
+                    System.out.println("Number out of range.");
+                }
+
+            } while(input < minValue || input > maxValue);
+
+            return input;
+        }
+
+        private static double getDouble(Scanner stdin) {
+            while(!stdin.hasNextDouble()) {
+                System.out.println("Numerical input required.");
+                stdin.next();
+            }
+            double input = stdin.nextDouble();
+            stdin.nextLine();
+            return input;
+        }
     }
 
     private static void saveClientsToFile(Branch branch) throws FileNotFoundException, IOException, ClassNotFoundException{

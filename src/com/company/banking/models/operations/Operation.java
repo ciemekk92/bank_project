@@ -1,16 +1,17 @@
 package com.company.banking.models.operations;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 public abstract class Operation implements Serializable {
     protected UUID id;
     protected final double amount;
-    private LocalDateTime date;
+    private Instant date;
 
     public Operation(double amount) {
         this.amount = amount;
+        this.date = Instant.now();
     }
 
     public UUID getId() {
@@ -25,9 +26,9 @@ public abstract class Operation implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getDate() { return date; }
+    public Instant getDate() { return date; }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
