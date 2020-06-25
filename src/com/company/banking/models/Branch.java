@@ -32,11 +32,18 @@ public class Branch implements Serializable {
         clients.remove(client);
     }
 
-    public List<Client> findClientByNameSurname (String name, String surname) {
+    public List<Client> findClientByNameAndSurname (String name, String surname) {
         return clients.stream()
                 .filter(client -> name.equals(client.getName()))
                 .filter(client -> surname.equals(client.getSurname()))
                 .collect(Collectors.toList());
+    }
+
+    public Client findClientById (UUID id) {
+        return clients.stream()
+                .filter(client -> id.equals(client.getId()))
+                .findAny()
+                .orElse(null);
     }
 
     public void printAllClients () {

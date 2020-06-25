@@ -81,5 +81,11 @@ public class Client implements Serializable {
     public String toString() {
         return "Client ID: " + id + "\nName: " + name + "\nSurname: " + surname + "\nAddress: " + address;
     }
+
+    public void printAllAccounts () {
+        for (Account account : accounts) {
+            System.out.println(account.toString());
+        }
+    }
 }
 

@@ -2,17 +2,18 @@ package com.company.banking.models.accounts;
 
 import com.company.banking.models.Client;
 import com.company.banking.models.operations.*;
+import static com.company.banking.util.AccountNumber.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Account implements Serializable { // TODO: Subclasses
-    public String accountNumber;
-    public double balance;
-    private final List<Operation> operations = new ArrayList<>();
-    private Client owner;
+public class Account implements Serializable {
+    public String accountNumber = generateAccountNumber();
+    public double balance = 0;
+    public final List<Operation> operations = new ArrayList<>();
+    public Client owner;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -82,7 +83,7 @@ public class Account implements Serializable { // TODO: Subclasses
         Withdrawal withdrawal = new Withdrawal(amount, this);
         this.addOperation(withdrawal);
         if (this instanceof SavingsAccount){
-            balance = balance - amount - ((SavingsAccount) this).getTransferFee();
+            balance = balance - amount - ((SavingsAccount) this).getWithdrawFee();
         } else {
             balance -= amount;
         }

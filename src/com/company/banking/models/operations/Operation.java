@@ -12,6 +12,7 @@ public abstract class Operation implements Serializable {
     public Operation(double amount) {
         this.amount = amount;
         this.date = Instant.now();
+        this.id = UUID.randomUUID();
     }
 
     public UUID getId() {
