@@ -34,8 +34,8 @@ public class Branch implements Serializable {
 
     public List<Client> findClientByNameAndSurname (String name, String surname) {
         return clients.stream()
-                .filter(client -> name.equals(client.getName()))
-                .filter(client -> surname.equals(client.getSurname()))
+                .filter(client -> name.equalsIgnoreCase(client.getName()))
+                .filter(client -> surname.equalsIgnoreCase(client.getSurname()))
                 .collect(Collectors.toList());
     }
 

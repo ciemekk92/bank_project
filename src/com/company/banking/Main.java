@@ -57,95 +57,152 @@ public class Main {
                 System.out.println(account.toString());
             }
         }
-*/
+*/      System.out.println(AccountNumber.generateAccountNumber());
         Menu.main(mainBranch);
 
     }
 
     public static class Menu {
-        public static void main(Branch branch) throws IOException, ClassNotFoundException, FileNotFoundException {
+        public static void main(Branch branch) throws IOException, ClassNotFoundException {
             Scanner stdin = new Scanner(System.in).useLocale(Locale.ENGLISH);
             readClientsFromFile(branch);
 
             loop:
             while(true) {
-                displayMenu("Main menu", "Manage clients", "Manage clients accounts", "Manage clients operations", "Exit");
+                displayMenu("Main menu", "Manage clients", "Manage client", "Exit");
                 int choice = getInt(stdin);
                 switch(choice) {
                     case 1:
                         manageClients(stdin, branch);
                         break;
                     case 2:
-                        manageAccounts(stdin, branch);
-                        break;
-                    case 3:
-                        manageOperations(stdin, branch);
+                        manageClient(stdin, branch);
                         break;
                     case 4:
+                        break loop;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            }
+        }
+
+        private static void manageClient(Scanner stdin, Branch branch) {
+            List<Client> clients = searchClientsHandler(branch, stdin);
+            if(clients == null) return;
+            System.out.println("Choose a client by their index:");
+            int index = UserInput.getInt(stdin, 0, clients.size() - 1);
+            Client client = clients.get(index);
+            loop:
+            while(true) {
+                displayMenu(client.getName() + " " + client.getSurname(),
+                        "Manage accounts", "List accounts", "Edit client's data", "Main menu");
+                int choice = getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        manageClientAccounts(stdin, client);
+                        break;
+                    case 2:
+                        AccountHandler.listAccountsHandler(client, stdin);
+                        break;
+                    case 3:
+                        editClient(stdin, client);
+                        break;
+                    case 4:
+                        break loop;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            }
+        }
+
+        public static void editClient(Scanner stdin, Client client) {
+            loop:
+            while(true) {
+                displayMenu("Select client's data you want to edit:",
+                        "Name", "Surname", "Address", "Return to main menu");
+                int choice = getInt(stdin);
+                switch (choice) {
+                    case 1:
+                        ClientHandler.editName(stdin, client);
+                        break;
+                    case 2:
+                        ClientHandler.editSurname(stdin, client);
+                        break;
+                    case 3:
+                        ClientHandler.editAddress(stdin, client);
+                        break;
+                    case 4:
+                        break loop;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            }
+        }
+
+        private static void manageClientAccounts(Scanner stdin, Client client) {
+            loop:
+            while(true) {
+                displayMenu(client.getName() + " " + client.getSurname() + " - " + "Manage accounts",
+                        "Add account", "Remove account", "List all operations", "Go back");
+                int choice = getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        addAccount(client, stdin);
+                        break;
+                    case 2:
+                        AccountHandler.removeAccountHandler(client, stdin);
+                        break;
+                    case 3:
+                        client.getAccounts().forEach(Account::printAllOperations);
+                        break;
+                    case 4:
+                        break loop;
+                    default:
+                        System.out.println("Invalid option.");
+                }
+            }
+        }
+
+        public static void addAccount(Client client, Scanner stdin) {
+            loop:
+            while(true) {
+                displayMenu("Select account type", "Regular", "Savings", "Go back");
+                int choice = getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        addRegularAccount(client);
+                        break;
+                    case 2:
+                        addSavingsAccount(client, stdin);
+                        break;
+                    case 3:
                         break loop;
                 }
             }
         }
 
         public static void manageClients(Scanner stdin, Branch branch) {
-            displayMenu("Manage clients" ,
-                    "Search clients", "Add client", "Edit client", "Remove client", "Main menu");
             loop:
             while(true) {
+                displayMenu("Manage clients",
+                        "Search clients", "Add client", "Remove client", "Main menu");
                 int choice = getInt(stdin);
                 switch(choice) {
                     case 1:
-                        searchClientsHandler(branch, stdin);
+                        ClientHandler.searchClientsHandler(branch, stdin);
                         break;
                     case 2:
-                        addClientHandler(branch, stdin);
+                        ClientHandler.addClientHandler(branch, stdin);
                         break;
                     case 3:
-                        editClientHandler(branch, stdin);
+                        ClientHandler.removeClientHandler(branch, stdin);
                         break;
                     case 4:
-                        removeClientHandler(branch, stdin);
-                        break;
-                    case 5:
                         break loop;
+                    default:
+                        System.out.println("Invalid option.");
                 }
             }
-        }
-
-        public static void manageAccounts(Scanner stdin, Branch branch) {
-            System.out.println("Find a client to manage his accounts\n");
-            System.out.println("Clients saved currently in branch: " + branch.getClients().size());
-            searchClientsHandler(branch, stdin);
-
-            UUID inputId = getUUID(stdin);
-            Client client = branch.findClientById(inputId);
-
-            displayMenu("Manage accounts", "List all accounts of selected client", "Add new account", "Edit account", "Remove account", "Main menu");
-
-            loop:
-            while(true) {
-                int choice = getInt(stdin);
-                switch(choice) {
-                    case 1:
-                        listAccountsHandler(client, stdin);
-                        break;
-                    case 2:
-                        addAccountHandler(client, stdin);
-                        break;
-                    case 3:
-                        editAccountHandler(client, stdin);
-                        break;
-                    case 4:
-                        removeAccountHandler(client, stdin);
-                        break;
-                    case 5:
-                        break loop;
-                }
-            }
-        }
-
-        public static void manageOperations(Scanner stdin, Branch branch) {
-
         }
 
         public static void displayMenu(String title, String...options) {
@@ -154,7 +211,6 @@ public class Main {
             for(String option : options) {
                 System.out.println(i++ + " - " + option);
             }
-            System.out.print("> ");
         }
     }
 
