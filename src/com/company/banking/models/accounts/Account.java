@@ -2,7 +2,7 @@ package com.company.banking.models.accounts;
 
 import com.company.banking.models.Client;
 import com.company.banking.models.operations.*;
-import static com.company.banking.util.AccountNumber.*;
+import com.company.banking.util.AccountNumber;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Account implements Serializable {
-    public String accountNumber = generateAccountNumber();
+    public String accountNumber = AccountNumber.generateAccountNumber();
     public double balance = 0;
     public final List<Operation> operations = new ArrayList<>();
     public Client owner;

@@ -1,25 +1,22 @@
 package com.company.banking.util;
 
+import java.time.Instant;
 import java.util.Random;
 
 public class AccountNumber {
-    public static String label = "PL";
+    public static String countryCode = "PL";
 
     public static String generateAccountNumber() {
         Random value = new Random();
-        int count = 0;
-        int n = 0;
+        value.setSeed(Instant.now().getEpochSecond());
 
-        for (int i =0; i < 12; i++) {
-            if (count == 4) {
-                label += " ";
-                count = 0;
-            } else {
-                n = value.nextInt(10);
-                label += Integer.toString(n);
-                count++;
-            }
+        String retVal = countryCode;
+
+        for (int i = 0; i < 22; i++) {
+            if(i == 2 || (i + 2) % 4 == 0) retVal += " ";
+            retVal += Integer.toString(value.nextInt(10));
         }
-        return label;
+
+        return retVal;
     }
 }
