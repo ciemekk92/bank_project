@@ -6,8 +6,10 @@ import java.util.regex.Pattern;
 
 import com.company.banking.handlers.ClientHandler;
 import com.company.banking.handlers.AccountHandler;
+import com.company.banking.handlers.OperationHandler;
 import com.company.banking.models.*;
 import com.company.banking.models.accounts.*;
+import com.company.banking.models.operations.Operation;
 import com.company.banking.util.*;
 
 import com.company.banking.util.UserInput;
@@ -82,6 +84,7 @@ public class Main {
                         break loop;
                     default:
                         System.out.println("Invalid option.");
+                        break;
                 }
             }
         }
@@ -95,7 +98,7 @@ public class Main {
             loop:
             while(true) {
                 displayMenu(client.getName() + " " + client.getSurname(),
-                        "Manage accounts", "List accounts", "Edit client's data", "Main menu");
+                        "Manage accounts", "List accounts", "Operations", "Edit client's data", "Main menu");
                 int choice = getInt(stdin);
                 switch(choice) {
                     case 1:
@@ -105,12 +108,16 @@ public class Main {
                         AccountHandler.listAccountsHandler(client, stdin);
                         break;
                     case 3:
-                        editClient(stdin, client);
+                        manageClientOperations(stdin, client);
                         break;
                     case 4:
+                        editClient(stdin, client);
+                        break;
+                    case 5:
                         break loop;
                     default:
                         System.out.println("Invalid option.");
+                        break;
                 }
             }
         }
@@ -135,6 +142,7 @@ public class Main {
                         break loop;
                     default:
                         System.out.println("Invalid option.");
+                        break;
                 }
             }
         }
@@ -159,6 +167,37 @@ public class Main {
                         break loop;
                     default:
                         System.out.println("Invalid option.");
+                        break;
+                }
+            }
+        }
+
+        public static void manageClientOperations(Scanner stdin, Client client) {
+            Account account = AccountHandler.chooseFromAccounts(client, stdin);
+            if(account == null) {
+                System.out.println("No accounts found.");
+                return;
+            }
+            loop:
+            while(true) {
+                displayMenu(client.getName() + " " + client.getSurname() + " - " + "Manage operations",
+                        "Make deposit", "Make withdrawal", "Make transfer", "Go back");
+                int choice = getInt(stdin);
+                switch(choice) {
+                    case 1:
+                        OperationHandler.makeDeposit(account, stdin);
+                        break;
+                    case 2:
+                        OperationHandler.makeWithdrawal(account, stdin);
+                        break;
+                    case 3:
+                        OperationHandler.makeTransfer(account, stdin);
+                        break;
+                    case 4:
+                        break loop;
+                    default:
+                        System.out.println("Invalid option.");
+                        break;
                 }
             }
         }
@@ -201,6 +240,7 @@ public class Main {
                         break loop;
                     default:
                         System.out.println("Invalid option.");
+                        break;
                 }
             }
         }

@@ -28,7 +28,7 @@ public class ClientHandler implements Serializable {
         System.out.println("Search results:");
 
         for (Client client : results) {
-            System.out.println("[" + results.indexOf(client) + "]\n" + client.toString() + "\n");
+            System.out.println("[" + results.indexOf(client) + "]\n" + client.toString());
         }
 
         return results;
@@ -57,21 +57,21 @@ public class ClientHandler implements Serializable {
         }
     }
 
-    public static void editName (Scanner stdin, Client client) {
+    public static void editName(Scanner stdin, Client client) {
         System.out.println("Specify clients new name:");
         String inputName = getString(stdin);
         client.setName(inputName);
         System.out.println("Clients name was successfully changed.");
     }
 
-    public static void editSurname (Scanner stdin, Client client) {
+    public static void editSurname(Scanner stdin, Client client) {
         System.out.println("Specify clients new surname:");
         String inputSurname = getString(stdin);
         client.setSurname(inputSurname);
         System.out.println("Clients surname was successfully changed.");
     }
 
-    public static void editAddress (Scanner stdin, Client client) {
+    public static void editAddress(Scanner stdin, Client client) {
         System.out.println("Specify clients new country:");
         String inputCountry = getString(stdin);
         System.out.println("Specify clients new city:");
