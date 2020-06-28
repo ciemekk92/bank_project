@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.Random;
 
 public class AccountNumber {
-    public static String countryCode = "PL";
+    public static final String countryCode = "PL";
 
     public static String generateAccountNumber() {
         Random value = new Random();

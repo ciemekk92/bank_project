@@ -57,6 +57,10 @@ public class Client implements Serializable {
         return branch;
     }
 
+    public String getNameAndSurname() {
+        return name + " " + surname;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
