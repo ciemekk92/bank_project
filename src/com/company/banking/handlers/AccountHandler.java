@@ -42,7 +42,7 @@ public class AccountHandler implements Serializable {
     }
 
     public static void editAccountHandler(Client client, Scanner stdin) {
-        // TODO
+
     }
 
     public static void removeAccountHandler(Client client, Scanner stdin) {

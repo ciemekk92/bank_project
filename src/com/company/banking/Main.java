@@ -143,7 +143,7 @@ public class Main {
             loop:
             while(true) {
                 displayMenu(client.getName() + " " + client.getSurname() + " - " + "Manage accounts",
-                        "Add account", "Remove account", "List all operations", "Go back");
+                        "Add account", "Remove account", "List all operations", "Edit account", "Go back");
                 int choice = getInt(stdin);
                 switch(choice) {
                     case 1:
@@ -156,6 +156,9 @@ public class Main {
                         client.getAccounts().forEach(Account::printAllOperations);
                         break;
                     case 4:
+                        editAccount(client, stdin);
+                        break;
+                    case 5:
                         break loop;
                     default:
                         System.out.println("Invalid option.");
@@ -179,6 +182,10 @@ public class Main {
                         break loop;
                 }
             }
+        }
+
+        public static void editAccount(Client client, Scanner stdin) {
+            
         }
 
         public static void manageClients(Scanner stdin, Branch branch) {
