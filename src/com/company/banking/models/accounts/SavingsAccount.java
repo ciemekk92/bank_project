@@ -40,6 +40,6 @@ public class SavingsAccount extends Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Type: Savings" + "Account number: " + accountNumber + " Owner: " + owner.getName() + " " + owner.getSurname() +".";
+        return "Type: Savings" + super.toString();
     }
 }

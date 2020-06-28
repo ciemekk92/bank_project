@@ -11,6 +11,6 @@ public class RegularAccount extends Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Type: Regular" + "Account number: " + accountNumber + " Owner: " + owner.getName() + " " + owner.getSurname() +".";
+        return "Type: Regular" + super.toString();
     }
 }

@@ -59,24 +59,24 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Account: " + accountNumber + " Owner: " + owner.getName() + " " + owner.getSurname() +".";
+        return "Account: " + accountNumber + " Owner: " + owner.getName() + " " + owner.getSurname() +"." + " Balance: " + balance;
     }
 
-    public void receiveTransfer(double amount, Account PayerAccount) {
-        Transaction operation = new Transaction(amount, PayerAccount, this);
+    public void receiveTransfer(double amount, Account payerAccount) {
+        Transaction operation = new Transaction(amount, payerAccount, this);
         balance += amount;
         this.addOperation(operation);
     }
 
-    public void sendTransfer (double amount, Account PayeeAccount) {
-        Transaction operation = new Transaction(amount, this, PayeeAccount);
+    public void sendTransfer (double amount, Account payeeAccount) {
+        Transaction operation = new Transaction(amount, this, payeeAccount);
         this.addOperation(operation);
         if (this instanceof SavingsAccount) {
             balance = balance - amount - ((SavingsAccount) this).getTransferFee();
         } else {
             balance -= amount;
         }
-        PayeeAccount.receiveTransfer(amount, this);
+        payeeAccount.receiveTransfer(amount, this);
     }
 
     public void newWithdrawal (double amount) {

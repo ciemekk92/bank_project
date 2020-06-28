@@ -49,6 +49,48 @@ public class UserInput implements Serializable {
         return input;
     }
 
+    public static double getDouble(Scanner stdin, double minValue, double maxValue) {
+        double input = 0;
+        do {
+            displayInputIndicator();
+            while(!stdin.hasNextDouble()) {
+                System.out.println("Integer required.");
+                stdin.next();
+                displayInputIndicator();
+            }
+            input = stdin.nextDouble();
+            stdin.nextLine();
+
+            if(input < minValue || input > maxValue) {
+                System.out.println("Number out of range.");
+            }
+
+        } while(input < minValue || input > maxValue);
+
+        return input;
+    }
+
+    public static double getDouble(Scanner stdin, double minValue) {
+        double input = 0;
+        do {
+            displayInputIndicator();
+            while(!stdin.hasNextDouble()) {
+                System.out.println("Integer required.");
+                stdin.next();
+                displayInputIndicator();
+            }
+            input = stdin.nextDouble();
+            stdin.nextLine();
+
+            if(input < minValue) {
+                System.out.println("Number out of range.");
+            }
+
+        } while(input < minValue);
+
+        return input;
+    }
+
     public static String getString(Scanner stdin) {
         displayInputIndicator();
         while(!stdin.hasNextLine()) {
