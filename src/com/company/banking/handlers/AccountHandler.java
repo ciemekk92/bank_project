@@ -23,7 +23,6 @@ public class AccountHandler implements Serializable {
         System.out.println(client.getAccounts().get(index));
         return client.getAccounts().get(index);
     }
-
     public static void listAccountsHandler(Client client, Scanner stdin) {
         System.out.println("Selected client's accounts:");
         if(client.getAccounts().size() != 0) client.printAllAccounts();

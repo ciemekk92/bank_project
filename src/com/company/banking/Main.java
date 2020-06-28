@@ -99,6 +99,7 @@ public class Main {
             while(true) {
                 displayMenu(client.getName() + " " + client.getSurname(),
                         "Manage accounts", "List accounts", "Operations", "Edit client's data", "Main menu");
+
                 int choice = getInt(stdin);
                 switch(choice) {
                     case 1:
@@ -201,7 +202,6 @@ public class Main {
                 }
             }
         }
-
         public static void addAccount(Client client, Scanner stdin) {
             loop:
             while(true) {
@@ -241,6 +241,7 @@ public class Main {
                     default:
                         System.out.println("Invalid option.");
                         break;
+
                 }
             }
         }

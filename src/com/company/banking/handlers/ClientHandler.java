@@ -61,27 +61,27 @@ public class ClientHandler implements Serializable {
         System.out.println("Specify clients new name:");
         String inputName = getString(stdin);
         client.setName(inputName);
-        System.out.println("Clients name was successfully changed.");
+        System.out.println("Client's name was successfully changed.");
     }
 
     public static void editSurname(Scanner stdin, Client client) {
         System.out.println("Specify clients new surname:");
         String inputSurname = getString(stdin);
         client.setSurname(inputSurname);
-        System.out.println("Clients surname was successfully changed.");
+        System.out.println("Client's surname was successfully changed.");
     }
 
-    public static void editAddress(Scanner stdin, Client client) {
-        System.out.println("Specify clients new country:");
+    public static void editAddress (Scanner stdin, Client client) {
+        System.out.println("Specify client's new country:");
         String inputCountry = getString(stdin);
-        System.out.println("Specify clients new city:");
+        System.out.println("Specify client's new city:");
         String inputCity = getString(stdin);
-        System.out.println("Specify clients new postcode:");
+        System.out.println("Specify client's new postcode:");
         String inputPostcode = getString(stdin);
-        System.out.println("Specify clients new street:");
+        System.out.println("Specify client's new street:");
         String inputStreet = getString(stdin);
         client.setAddress(new Address(inputCountry, inputCity, inputPostcode, inputStreet));
-        System.out.println("Clients address was successfully changed.");
+        System.out.println("Client's address was successfully changed.");
     }
 
     public static void removeClientHandler(Branch branch, Scanner stdin) {
